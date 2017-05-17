@@ -79,7 +79,7 @@ gulp.task('serve',['watch'], function() {
             baseDir: "./"
         },
         startPath:"./build/html/pages",
-        port: 8080
+        port: 8081
     });
     gulp.watch( "./src/**/*.scss", [ 'sass' ] );
 });
