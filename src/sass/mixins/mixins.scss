@@ -1,0 +1,129 @@
+/*** mixins.scss ***/
+//Common Vars
+$testimonial-control:'testimonial';
+$cta-control:'CTA Quote';
+$filterable-control:'filterable content';
+$isautocomplete:'is-autocomplete';
+$isdropdown:'is-dropdown';
+$isMontserrat:'Montserrat';
+$isRoboto:'Roboto Slab';
+
+//Fonts
+@mixin setfontstyle($fontfamily,$fontstyle,$fontsize){
+  font-family:#{$fontfamily};
+  font-style:$fontstyle;
+  font-size: $fontsize;
+}
+//Text
+@mixin content-text($fontsize,$textcolor:""){
+  font-size: $fontsize;
+  color:#{$textcolor};
+}
+//Buttons
+@mixin blue-button(){
+  font-family: #{$isMontserrat};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  padding: 1em 2.25em;
+  background: $blue;
+  border-color: $blue;
+  color: $white;
+  text-transform: uppercase;
+  font-size:0.85em;
+  border-radius: 0.5em;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover{
+    background:$blue-hover;
+    border-color: $blue-hover;
+  }
+
+}
+
+//Blue Header Div
+@mixin blueheader($controlname){
+  background:$blue;
+  border-top:1px solid $border-color;
+  border-bottom:1px solid $border-color;
+  transition:0.3s all ease;
+  padding: 1.1em 7.5em;
+  font-size: 2em;
+
+  @include phoneportrait{
+    padding:1em 2em;
+  }
+  &:hover{
+    background:$blue-hover;
+  }
+  a,span{
+    color:$white;
+  }
+  a{
+    text-decoration:none;
+    &:before {
+      content:$controlname;
+      font-family: #{$isMontserrat};
+      font-style: normal;
+      font-weight:400;
+      text-transform:capitalize;
+    }
+  }
+}
+
+//Dropdown
+@mixin dropdowns($controltype){
+  @if($controltype == $isautocomplete) {
+    display:none;
+
+  }@else {
+    display:block;
+    border:1px solid $medium-gray;
+    position: absolute;
+    background: $white;
+    width:100%;
+
+    @include tabletportrait{
+      position:static;
+    }
+
+    li{
+      padding:1em;
+      border-bottom:1px solid $medium-gray;
+      color: $dark-gray;
+
+      label{
+        text-transform: uppercase;
+        @include setfontstyle($isMontserrat,'normal',400);
+      }
+    }
+  }
+  font-size:0.75em;
+  list-style-type: none;
+  transition:0.3s display ease;
+  &.active{
+    display:block;
+    border: 1px solid $medium-gray;
+    position: absolute;
+    z-index: 9999999;
+    background: $white;
+    width: 100%;
+    li{
+      padding:0.5em;
+      a{
+        color:$blue;
+        &:hover {
+          color: $blue-hover;
+        }
+      }
+      label{
+        text-transform: capitalize;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,63 @@
+/* cta.scss */
+.main-cta {
+  .blue-header {
+    @include blueheader($cta-control);
+  }
+  .cta-block {
+
+    &.content-wrapper {
+      display: table;
+      margin: 2em 0;
+      background: $dark-bg;
+      padding: 1.5em 0;
+      width:100%;
+      @include tabletportrait{
+        display:block;
+      }
+      .content-block {
+        margin: 0 auto;
+        display: flex;
+        width: 72%;
+        @include tabletportrait{
+          width:100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        > div {
+          float: left;
+        }
+
+        p {
+          @include setfontstyle($isRoboto, normal, 300);
+          @include content-text(0.85em,$white);
+          color: $white;
+          width: 88%;
+          vertical-align: middle;
+          line-height: 2;
+          padding:0 1em 0 0;
+
+          @include tabletportrait{
+            width:100%;
+            margin-bottom: 2em;
+            order:1;
+            padding:0 2em;
+          }
+        }
+
+        a {
+          &.button {
+            @include blue-button();
+
+            align-self: center;
+            @include tabletportrait{
+              transform: none;
+              order:1;
+              margin:0 2em;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

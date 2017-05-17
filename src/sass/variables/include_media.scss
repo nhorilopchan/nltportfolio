@@ -1,0 +1,39 @@
+/* _include_media.scss */
+
+
+$xs-phone: 320px;
+$sm-phone: 375px;
+$phone: 480px;
+$x1-phone: 560px;
+$xxl-phone: 736px;
+$tablet: 768px;
+$tablet-x: 800px;
+$tablet-xl: 992px;
+$desktop: 1024px;
+$desktop-x: 1300px;
+$widescreen: 1550px;
+
+$greaterorequal:'>=';
+$lesserorequal:'<=';
+
+@mixin phoneportrait{
+  @media (min-width: #{$xs-phone}-1px) and (max-width: #{$xxl-phone - 1px}) {
+    @content;
+  }
+}
+@mixin tabletportrait {
+  @media (min-width: #{$xs-phone}-1px) and (max-width: #{$tablet-xl - 1px}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$xxl-phone}-1px) and (max-width: #{$tablet-xl - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

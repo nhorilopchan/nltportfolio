@@ -1,0 +1,114 @@
+<!-- Filterable Content Block -->
+<% include ../partials/_blueheader %>
+<%
+function getUniqueValues(array, key) {
+	const fullArray = array.reduce((acc, val) => {
+		if(typeof val[key] === "string") {
+			return [...acc, val[key]];
+		}
+		return [...acc, ...val[key]];
+	}, []);
+
+	return fullArray.reduce((acc, val) => {
+		var duplicateGenre = acc.find(el => val === el);
+		if (!duplicateGenre) {
+			acc.push(val);
+		}
+		return acc;
+	}, []);
+}
+%>
+<section class="filterable-content-block">
+	<div class="content-wrapper">
+		<div>
+			<div class="filters-panel">
+				<div class="row first">
+					<div class="dropdown by-genre">
+						<span class="toggle">Genre</span>
+						<div class="dropdown-content">
+							<ul id="ddl-by-genre">
+                                <%
+								const uniqueGenres = getUniqueValues(data.media, "genre").sort();
+								uniqueGenres.forEach((genre, index) => {
+                                %>
+								<li>
+									<input type="checkbox" id="<%=`chkGenre${index}`%>" class="filter-list" data-filter="genre" value="<%=genre%>" />
+									<label for=<%=`chkGenre${index}`%>><%=genre%></label>
+								</li>
+                                <%});%>
+							</ul>
+						</div>
+					</div>
+					<div class="dropdown by-year">
+						<span class="toggle">Year</span>
+						<div class="dropdown-content">
+
+							<ul id="ddl-by-year">
+                                <% const uniqueYears= getUniqueValues(data.media, "year").sort();
+								uniqueYears.forEach((year,index) => {
+                                %>
+								<li>
+									<input type="checkbox" id="<%=`chkYear${index}`%>" class="filter-list" data-filter="year"
+										   value="<%=year%>" />
+									<label for=<%=`chkYear${index}`%>><%= year %></label>
+								</li>
+                                <%});%>
+							</ul>
+						</div>
+					</div>
+					<div id="search-input" class="search-input">
+						<input type="text" id="search-text-input" placeholder="Search By Name">
+						<ul class="search-list">
+                            <% const uniqueTitles= getUniqueValues(data.media, "title");
+							uniqueTitles.forEach(title => {
+                            %>
+							<li data-selected="false" data-filter="<%=title%>" data-control="textbox"><%=title%></li>
+                            <%});%>
+						</ul>
+					</div>
+				</div>
+				<div class="row second">
+					<div>
+						<input id="filterradio-movies" type="radio" name="filterradio" data-filter="type" value="movie" class="filter-radio" />
+						<label for="filterradio-movies">Movies</label>
+					</div>
+					<div>
+						<input id="filterradio-books" type="radio" name="filterradio" data-filter="type" value="book" class="filter-radio" />
+						<label for="filterradio-books">Books</label>
+					</div>
+					<div class="clear-filters">
+						<a href="#" id="clearfilters">Clear filters</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content-wrapper list-wrapper">
+		<div>
+			<div class="selected-filters"></div>
+			<label class="results-message"></label>
+			<div>
+				<ul class="contents-list" id="contentsParent">
+                    <% data.media.forEach(media => {
+                    %>
+					<li data-filter="<%= media.year%> <%= media.genre%> <%= media.type %> <%= media.title %>"
+                        class="content-item-visible">
+						<div class="thumbnail-wrapper">
+							<a href="https://www.google.com/search?q=<%= media.title %>" title="<%= media.title %>"
+							   target="_blank">
+								<img src="<%= media.poster %>" alt="<%= media.title %>" />
+							</a>
+						</div>
+						<div class="info-wrapper">
+							<p class="info-name-year" data-name="<%= media.title %>"><%= media.title %> (<%= media
+										.year%>)</p>
+							<p class="info-genre"><%= media.genre.join(', ')%></p>
+						</div>
+					</li>
+                    <% }); %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,15 @@
+/* main.scss */
+
+//Variables
+@import 'variables/include_media';
+@import 'variables/colors';
+
+//Mixins
+@import 'mixins/mixins';
+
+//Partials
+@import 'partials/header';
+@import 'partials/cta';
+@import 'partials/filterablecontent';
+@import 'partials/testimonial';
+@import 'partials/footer';

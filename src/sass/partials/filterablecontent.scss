@@ -1,0 +1,354 @@
+/* filterablecontent.scss */
+.main-filterable-content {
+  .blue-header {
+    @include blueheader($filterable-control);
+  }
+  .filterable-content-block {
+    margin: 2em 0;
+    .content-wrapper {
+      width: 67%;
+      margin: 0 auto;
+      padding: 1em;
+      border: 1px solid $light-gray-border;
+      @include tabletportrait{
+        width:90%;
+      }
+      .filters-panel {
+        .row {
+          display: inline-block;
+          width: 100%;
+          padding-bottom: 1em;
+
+          > div {
+            position:relative;
+            width: auto;
+            float: left;
+            font-family: $isMontserrat;
+            font-style: normal;
+            font-weight: 700;
+
+            @include tabletportrait{
+              width: 100%;
+              margin-bottom: 1em;
+              float: none;
+            }
+            &:last-child {
+              float: right;
+              @include tabletportrait{
+                float:none;
+              }
+            }
+            &.dropdown {
+              margin-right: 1.25em;
+              @include tabletportrait{
+                width: 47%;
+                float:left;
+              }
+              @include phoneportrait{
+                width:100%;
+                float:none;
+              }
+              span {
+                @include tabletportrait{
+                  width:75%;
+                }
+                &.toggle {
+                  display:inline-block;
+                  color: $dark-gray;
+                  text-transform: uppercase;
+                  font-size: 1em;
+                  margin-bottom:1.5em;
+                  font-weight: 700;
+                  padding: .5em 2.5em;
+                  background: $light-gray-bg;
+                  border-bottom: 4px solid $medium-gray;
+
+                  @include phoneportrait{
+                    width: 100%;
+                    box-sizing: border-box;
+                  }
+                  @include tabletportrait{
+                    text-align: center;
+                  }
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                  &:after {
+                    content: 'v';
+                    margin-left: 1em;
+                    font-size: 0.75em;
+                    vertical-align: middle;
+                  }
+                  &.expanded{
+                    &:after {
+                      content: '^';
+                      margin-left: 1em;
+                      font-size: 1em;
+                      vertical-align: middle;
+                      font-weight: 700;
+                    }
+                  }
+                }
+              }
+              .dropdown-content{
+                display:none;
+                &.show{
+                  display:block;
+                }
+                ul {
+                  @include dropdowns($isdropdown);
+                  z-index:1;
+
+                  li{
+                    text-transform: uppercase;
+                    font-size: 1.15em;
+
+                    input[type="checkbox"]{
+                      margin-right: 1em;
+                    }
+                  }
+                  @include tabletportrait{
+                    position:static;
+                  }
+                }
+              }
+              &:hover{
+                //.dropdown-content{
+                //  display:block;
+                //
+                //}
+              }
+            }
+            &.search-input{
+              position:relative;
+              display:inline-block;
+
+              &.active{
+                .search.icon{
+                  border: none;
+                  border-radius: 0;
+                  -webkit-transform: none;
+                  transform: none;
+                  cursor: pointer;
+                  margin: 0.5em;
+                  right: 0.25em;
+
+                  &:before{
+                    content:'x';
+                    background-color: $white;
+                    top:0;
+                    font-weight:bold;
+                  }
+                }
+              }
+              .search.icon{
+                right: 0;
+                color: $black;
+                position: absolute;
+                margin-top: 0.75em;
+                margin-right: 0.5em;
+                width: 8px;
+                height: 8px;
+                border: solid 2px currentColor;
+                border-radius: 100%;
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+
+                &:before{
+                  content: '';
+                  position: absolute;
+                  top: 9px;
+                  left: 3px;
+                  height: 6px;
+                  width: 2px;
+                  background-color: currentColor;
+                }
+
+              }
+              input[type="text"] {
+                border: 1px solid $dark-gray;
+                padding: 0.75em 1em;
+                box-sizing: border-box;
+
+                &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                  color: $dark-gray;
+                  @include setfontstyle($isMontserrat,'normal',400);
+                }
+                &::-moz-placeholder { /* Firefox 19+ */
+                  color: $dark-gray;
+                  @include setfontstyle($isMontserrat,'normal',400);
+                }
+                &:-ms-input-placeholder { /* IE 10+ */
+                  color: $dark-gray;
+                  @include setfontstyle($isMontserrat,'normal',400);
+                }
+                &:-moz-placeholder { /* Firefox 18- */
+                  color: $dark-gray;
+                  @include setfontstyle($isMontserrat,'normal',400);
+                }
+                @include tabletportrait {
+                  width: 100%;
+                }
+              }
+              .hidden{
+                display:none;
+              }
+              ul.search-list{
+                @include dropdowns($isautocomplete);
+                li{
+                  cursor:pointer;
+                  transition:all 0.3s ease;
+                  position:relative;
+                  padding:0.5em 1em;
+                  text-transform: uppercase;
+
+                  &:hover{
+                    background:$light-gray-bg;
+                    font-size:1.1em;
+                    color:$orange;
+                    padding: 1em;
+                    &:before{
+                      content:'>';
+                      position:relative;
+                      padding-right:0.5em;
+                      font-weight:bold;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          //Second row
+          &.second {
+            > div {
+              margin-right: 1em;
+              font-size: 0.95em;
+              @include tabletportrait{
+                width: 45%;
+                float: left;
+              }
+              label {
+                color: inherit;
+              }
+              &.clear-filters {
+                a {
+                  color: $blue;
+                  text-decoration: underline;
+                  text-transform: uppercase;
+                  transition: 0.3s color ease;
+                  font-size: 0.75em;
+
+                  &:hover {
+                    color: $blue-hover;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .left-panel {
+          width: 70%;
+          float: left;
+        }
+      }
+      &.list-wrapper {
+        padding:1.5em 1em;
+        .results-message{
+          @include setfontstyle($isMontserrat,normal,0.95em);
+          float:right;
+        }
+        ul.contents-list {
+          list-style-type: none;
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+          padding: 0;
+          li {
+            width:33.33%;
+            padding: 1em 1.25em;
+            box-sizing: border-box;
+
+            @include tabletportrait{
+              width:100%;
+            }
+            .thumbnail-wrapper {
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+            }
+            .info-wrapper {
+              padding-top: 0.75em;
+              p[class^='info'] {
+                font-family: $isMontserrat;
+                font-size: 0.85em;
+                padding-bottom: 0.5em;
+                text-transform: capitalize;
+                &.info-genre {
+                  &:before {
+                    content: 'Genres:';
+                    margin-right: 0.25em;
+                  }
+                }
+              }
+            }
+
+            &.content-item-visible{
+              display:block;
+              @include tabletportrait{
+                width:50%;
+              }
+              @include phoneportrait{
+                width:100%;
+              }
+            }
+          }
+          &.filteringOn,&.filteringByTextOn{
+            li{
+              &.content-item-visible{
+                display:none;
+                &.checked{
+                  display:block;
+                }
+              }
+            }
+          }
+        }
+        .selected-filters{
+          display:inline-block;
+          z-index:-1;
+          padding-bottom:1em;
+
+          >span{
+            background: $light-gray-bg;
+            padding:0.5em 1em;
+            position:relative;
+            color:$dark-gray;
+            text-transform: capitalize;
+            @include setfontstyle($isMontserrat,normal,0.85em);
+            margin-right:0.5em;
+            -moz-transition: all 0.3s ease-in-out;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+
+            &:after{
+              content: "x";
+              position: relative;
+              right: 0;
+              padding-left: 0.5em;
+              top: 0;
+              bottom: 0;
+            }
+            &:hover{
+              -moz-transform: scale(1.1);
+              -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

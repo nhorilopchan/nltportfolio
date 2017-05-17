@@ -1,0 +1,67 @@
+/* testimonial.scss **/
+.main-testimonial {
+  .blue-header {
+    @include blueheader($testimonial-control);
+  }
+  .testimonial-block {
+    &.content-wrapper {
+      display: inline-block;
+      margin: 2em 0;
+      background: $light-gray-bg;
+      padding: 1.5em 1em;
+
+      .content {
+        width: 47.25%;
+        margin: 0 auto;
+        position:relative;
+        border-left:2px solid $orange;
+
+        @include tabletportrait{
+          width:80%;
+        }
+        &:before{
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: $orange;
+          content: '\201c';
+          display: block;
+          position: absolute;
+          left: -24px;
+          border:3px solid $white;
+          font-size: 60px;
+          text-align: center;
+          color: $white;
+        }
+        &:after{
+          width: 10px;
+          height: 10px;
+          display: block;
+          border-radius: 50%;
+          background: $orange;
+          content: '';
+          position: absolute;
+          left: -6px;
+        }
+        p {
+          @include setfontstyle($isRoboto, normal, 1.25em);
+          @include content-text(1.25em,inherit);
+          margin-left: 1.5em;
+          padding-top: 2em;
+          color:$dark-gray;
+          line-height: 1.35;
+        }
+        span {
+          &.author {
+            @include setfontstyle('Montserrat', normal, 0.85em);
+            font-weight: 700;
+            margin-left:2em;
+            margin-top: 2.25em;
+            color:$dark-gray;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

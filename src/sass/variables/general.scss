@@ -1,0 +1,25 @@
+$breakpoints: (
+        'xs-phone': 320px,
+        'sm-phone':375px,
+        'phone': 480px,
+        'xl-phone': 560px,
+        'xxl-phone':736px,
+        'tablet': 768px,
+        'tablet-x':800px,
+        'tablet-xl':992px,
+        'desktop': 1024px,
+        'desktop-x': 1300px,
+        'widescreen': 1550px
+);
+
+// keywords
+$media-expressions: (
+        'screen': 'screen',
+        'print': 'print',
+        'handheld': 'handheld',
+        'landscape': '(orientation: landscape)',
+        'portrait': '(orientation: portrait)',
+        'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+        'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
