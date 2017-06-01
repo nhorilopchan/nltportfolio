@@ -1,0 +1,12 @@
+*.idea
+*.user
+node_modules
+/dist/*.css
+/dist/*.js
+dist/
+/build/*.css
+/build/*.js
+/build/*.html
+build/
+partials/
+public/

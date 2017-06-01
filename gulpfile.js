@@ -26,15 +26,15 @@ gulp.task('ejs', function() {
             return { 'data': require('./src/js/data/data.json') }
         }))
         .pipe(ejs({}, {ext:'.html'}))
-        // .pipe(gulp.dest('./build/html'))
+        .pipe(gulp.dest('./build/html'))
         // .pipe(gulp.dest('./public/html'))
-        .pipe(gulp.dest('./'))
+        //.pipe(gulp.dest('./'))
         .pipe(browserSync.stream());
 });
 
 //JS Files
 var jsSourceFiles = 'src/js/*.js',
-    jsDest = './public/js';
+    jsDest = './build/scripts';
 
 gulp.task('js', function() {
     gulp.src(jsSourceFiles)
@@ -58,7 +58,7 @@ gulp.task('js', function() {
 var cssSourceFiles = ['src/sass/_partials/*.scss','src/sass/*.scss','src/sass/mixins/*.scss'
     ,'src/sass/variables/*.scss'
 ]
-cssDest = './public/css';
+cssDest = './build/css';
 
 gulp.task('sass', function() {
     gulp.src(cssSourceFiles)
@@ -80,7 +80,7 @@ gulp.task('serve',['watch'], function() {
         server: {
             baseDir: "./"
         },
-        startPath:"./",
+        startPath:"./build/html/",
         port: 8081
     });
     gulp.watch( "./src/**/*.scss", [ 'sass' ] );
