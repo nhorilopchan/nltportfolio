@@ -27,14 +27,14 @@ gulp.task('ejs', function() {
         }))
         .pipe(ejs({}, {ext:'.html'}))
         .pipe(gulp.dest('./build/html'))
-        .pipe(gulp.dest('./public'))
+        .pipe(gulp.dest('./public/html'))
         .pipe(gulp.dest('./'))
         .pipe(browserSync.stream());
 });
 
 //JS Files
 var jsSourceFiles = 'src/js/*.js',
-    jsDest = './build/scripts';
+    jsDest = './public/js';
 
 gulp.task('js', function() {
     gulp.src(jsSourceFiles)
@@ -51,15 +51,14 @@ gulp.task('js', function() {
             exclude: ['tasks'],
             ignoreFiles: ['-min.js']
         }))
-        .pipe(gulp.dest(jsDest))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest(jsDest));
 });
 
 //CSS Files
 var cssSourceFiles = ['src/sass/_partials/*.scss','src/sass/*.scss','src/sass/mixins/*.scss'
     ,'src/sass/variables/*.scss'
 ]
-cssDest ='./build/css';
+cssDest = './public/css';
 
 gulp.task('sass', function() {
     gulp.src(cssSourceFiles)
@@ -69,7 +68,6 @@ gulp.task('sass', function() {
         .pipe(concat('styles.css'))
         .pipe(minify())
         .pipe(gulp.dest(cssDest)
-            .pipe(gulp.dest('./'))
         );
 });
 gulp.task('watch', function() {
@@ -82,7 +80,7 @@ gulp.task('serve',['watch'], function() {
         server: {
             baseDir: "./"
         },
-        startPath:"./public",
+        startPath:"./public/html",
         port: 8081
     });
     gulp.watch( "./src/**/*.scss", [ 'sass' ] );
