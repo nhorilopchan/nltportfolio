@@ -28,7 +28,7 @@ gulp.task('ejs', function() {
         .pipe(ejs({}, {ext:'.html'}))
         .pipe(gulp.dest('./build/html'))
         // .pipe(gulp.dest('./public/html'))
-        //.pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./'))
         .pipe(browserSync.stream());
 });
 
@@ -51,7 +51,8 @@ gulp.task('js', function() {
             exclude: ['tasks'],
             ignoreFiles: ['-min.js']
         }))
-        .pipe(gulp.dest(jsDest));
+        .pipe(gulp.dest(jsDest))
+        .pipe(gulp.dest('./'));
 });
 
 //CSS Files
@@ -68,6 +69,7 @@ gulp.task('sass', function() {
         .pipe(concat('styles.css'))
         .pipe(minify())
         .pipe(gulp.dest(cssDest)
+        .pipe(gulp.dest('./'))
         );
 });
 gulp.task('watch', function() {
@@ -80,7 +82,7 @@ gulp.task('serve',['watch'], function() {
         server: {
             baseDir: "./"
         },
-        startPath:"./build/html/",
+        startPath:"./",
         port: 8081
     });
     gulp.watch( "./src/**/*.scss", [ 'sass' ] );
