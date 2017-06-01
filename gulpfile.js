@@ -26,8 +26,8 @@ gulp.task('ejs', function() {
             return { 'data': require('./src/js/data/data.json') }
         }))
         .pipe(ejs({}, {ext:'.html'}))
-        .pipe(gulp.dest('./build/html'))
-        .pipe(gulp.dest('./public/html'))
+        // .pipe(gulp.dest('./build/html'))
+        // .pipe(gulp.dest('./public/html'))
         .pipe(gulp.dest('./'))
         .pipe(browserSync.stream());
 });
@@ -80,7 +80,7 @@ gulp.task('serve',['watch'], function() {
         server: {
             baseDir: "./"
         },
-        startPath:"./public/html",
+        startPath:"./",
         port: 8081
     });
     gulp.watch( "./src/**/*.scss", [ 'sass' ] );
